@@ -3,16 +3,40 @@
 # Author: Will Zhang
 
 if [ $# -eq 0 ]; then
-    echo "Tool:    compare-peaks"
-    echo "Summary: Compare the percent overlap between two histone mark datasets in the same cell type for the same mark. Generate scatterplots that compare signals over each peak."
-    echo "Usage:   ./compare-peaks.sh peaks1.bed peaks2.bed [signal1.bigwig] [signal2.bigwig]"
+    echo "Tool:         compare-peaks"
+    echo "Summary:      Compare the percent overlap between two histone mark datasets in the same cell type for the same mark. Generate scatterplots that compare signals over each peak."
+    echo "Usage:        ./compare-peaks.sh peaks1.bed peaks2.bed [signal1.bigwig] [signal2.bigwig]"
+    echo "Dependencies: bigWigAverageOverBed" 
     exit 1
 fi
 
-### Compute number of peaks and intersection ###
+### Validate arguments ###
 
 peaks1=$1
 peaks2=$2
+signal1=""
+signal2=""
+
+# Test peaks are BED files
+if [ ${peaks1: -4} != ".bed" ] || [ ${peaks2: -4} != ".bed" ]
+then
+    echo "Error: peaks are not BED files."
+    exit 1
+fi
+
+# Test signals are bigWig files
+if [ $# -eq 4 ]; then
+    signal1=$3
+    signal2=$4
+    
+    if [ ${signal1: -7} != ".bigwig" ] || [ ${signal2: -7 } != ".bigwig" ]
+    then
+        echo "Error: signals are not bigWig files."
+        exit 1
+    fi
+fi
+
+### Compute number of peaks and intersections ###
 
 numpeaks=$( cat $peaks1 | wc -l )
 overlap=$( bedtools intersect -u -a $peaks1 -b $peaks2 | wc -l )
@@ -30,3 +54,7 @@ echo "  percent overlap: "$percent" %"
 
 ### Generate scatterplots comparing signals between each lab over each peak ###
 
+if [ $# -eq 4 ]; then
+    echo "Generating scatterplots ... "
+    echo "Done."
+fi
