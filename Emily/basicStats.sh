@@ -8,7 +8,7 @@
 
 START=$(date +%s)
 
-echo "ENCODE ID, Description, # ATAC-seq Peaks, Average Width, Average FDR, # Overlap with cREs, Percent Overlap" > basicStats.csv
+echo "ENCODE ID, Description, # ATAC-seq Peaks, Average Width, Average FDR, # Overlap with cREs, Percent Overlap" > ~/myData/basicStats.csv
 
 path="/data/projects/rusers/Emily-2017"
 cREs="$path/mm10-cREs.bed"
