@@ -65,14 +65,16 @@ if [ $# -eq 4 ]; then
     echo "Generating peak 1 ("$peaks1") scatterplot ... "
     cat $peaks1 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks1.bed
 
-    bigWigAverageOverBed $signal1 tmp.peaks1.bed peaks1.signal1.results.bed
-    bigWigAverageOverBed $signal2 tmp.peaks1.bed peaks1.signal2.results.bed
+    bigWigAverageOverBed $signal1 tmp.peaks1.bed peaks1.signal1.results.dat
+    bigWigAverageOverBed $signal2 tmp.peaks1.bed peaks1.signal2.results.dat
+    
+    # Rscript --vanilla signals-over-peak.R peaks1.signal1.results.dat peaks1.signal2.results.dat $peaks1
 
     echo "Generating peak 2 ("$peaks2") scatterplot ... "
     cat $peaks2 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks2.bed
 
-    bigWigAverageOverBed $signal1 tmp.peaks2.bed peaks2.signal1.results.bed
-    bigWigAverageOverBed $signal2 tmp.peaks2.bed peaks2.signal2.results.bed
+    bigWigAverageOverBed $signal1 tmp.peaks2.bed peaks2.signal1.results.dat
+    bigWigAverageOverBed $signal2 tmp.peaks2.bed peaks2.signal2.results.dat
 
     echo "Done."
 fi
