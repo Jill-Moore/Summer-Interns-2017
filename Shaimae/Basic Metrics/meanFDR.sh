@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Shaimae Elhajjajy
 # Script to find the mean FDR of each file for GM12878 and K562 Histone Mark peak files (similar script can be applied to any .bed file to find the mean FDR)
 
 # Isolate the columns .bed file names
