@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Shaimae Elhajjajy
 # Script to find the average peak width of the GM12878 and K562 Histone Mark peak files (similar script can be applied to any .bed file to find the average peak width or average cRE length)
 
 # Isolate the columns .bed file names
