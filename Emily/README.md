@@ -1,5 +1,7 @@
 # Emily
 
+Link to write-up: https://docs.google.com/document/d/1oS5GaF_r6PVTwPVPUgx4NwSWilbb7-6pmN1CjRDFCDs/edit?usp=sharing
+
 Scripts and their descriptions: 
 
 * basicStats:		Get basic stats for ATAC-seq peaks
