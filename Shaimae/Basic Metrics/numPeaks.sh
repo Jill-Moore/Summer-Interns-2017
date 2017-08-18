@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Shaimae Elhajjajy
 # Script to find the number of peaks in each of the GM12878 and K562 histone mark files (similar script can be applied to any .bed file to find the total number of peaks or cREs)
 
 # Isolate the columns .bed file names
