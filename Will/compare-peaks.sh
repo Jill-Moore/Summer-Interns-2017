@@ -6,7 +6,7 @@ if [ $# -eq 0 ]; then
     echo "Tool:         compare-peaks"
     echo "Summary:      Compare the percent overlap between two histone mark datasets in the same cell type for the same mark. Generate scatterplots that compare signals over each peak."
     echo "Usage:        ./compare-peaks.sh peaks1.bed peaks2.bed [signal1.bigwig signal2.bigwig]"
-    echo "Dependencies: bigWigAverageOverBed" 
+    echo "Dependencies: bigWigAverageOverBed, Rscript, signals-over-peak.R" 
     exit 1
 fi
 
@@ -62,19 +62,32 @@ echo "  percent overlap: "$percent" %"
 ### Generate scatterplots comparing signals between each lab over each peak ###
 
 if [ $# -eq 4 ]; then
+    # Peak 1 scatterplot
     echo "Generating peak 1 ("$peaks1") scatterplot ... "
     cat $peaks1 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks1.bed
 
     bigWigAverageOverBed $signal1 tmp.peaks1.bed peaks1.signal1.results.dat
     bigWigAverageOverBed $signal2 tmp.peaks1.bed peaks1.signal2.results.dat
     
-    # Rscript --vanilla signals-over-peak.R peaks1.signal1.results.dat peaks1.signal2.results.dat $peaks1
+    corr=$( Rscript --vanilla signals-over-peak.R peaks1.signal1.results.dat peaks1.signal2.results.dat $peaks1 )
 
+    echo $peaks1" signal correlation: "$corr
+
+    # Cleanup
+    rm tmp.peaks1.bed peaks1.signal1.results.dat peaks1.signal2.results.dat
+
+    # Peak 2 scatterplot
     echo "Generating peak 2 ("$peaks2") scatterplot ... "
     cat $peaks2 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks2.bed
 
     bigWigAverageOverBed $signal1 tmp.peaks2.bed peaks2.signal1.results.dat
     bigWigAverageOverBed $signal2 tmp.peaks2.bed peaks2.signal2.results.dat
 
+    corr=$( Rscript --vanilla signals-over-peak.R peaks2.signal1.results.dat peaks2.signal2.results.dat $peaks2 )
+
+    echo $peaks2" signal correlation: "$corr
+
+    # Cleanup
+    rm tmp.peaks2.bed peaks2.signal1.results.dat peaks2.signal2.results.dat
     echo "Done."
 fi
