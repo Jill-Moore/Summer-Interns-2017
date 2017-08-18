@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Shaimae Elhajjajy
 # Script that uses bedtools intersect to find the percent overlap between GM12878 cREs and TF ChIP-seq peaks
 
 # Get ENCODE file information (experiment ID, peak file ID, TF name) from the file
