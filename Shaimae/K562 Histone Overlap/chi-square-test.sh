@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Shaimae Elhajjajy
 # Script to run the chi-square test on the K562 cRE-histone mark overlap results
 
 # Create an array with the names of the results files
