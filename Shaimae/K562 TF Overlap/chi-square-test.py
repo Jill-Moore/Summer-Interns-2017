@@ -1,3 +1,5 @@
+# Author: Shaimae Elhajjajy
+
 # Load necessary packages
 import scipy.stats
 import numpy as np
