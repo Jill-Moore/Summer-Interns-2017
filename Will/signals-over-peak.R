@@ -38,3 +38,12 @@ data <- data.frame(xaxis = xtable$V5, yaxis = ytable$V5)
 corr <- cor(data$xaxis, data$yaxis)
 
 cat(round(corr, digits=3))
+
+p <- ggplot(data, aes(x = xaxis, y = yaxis))
+p + geom_point(color = color) + 
+  ggtitle(title) + 
+  xlab(paste(x, "Signal")) + 
+  ylab(paste(y, "Signal")) + 
+  theme(plot.title = element_text(face = "bold", color = "#323232", hjust = 0.5), 
+        axis.title = element_text(face = "bold", color = "#323232"))
+ggsave(paste(peak, ".png", sep=""))
