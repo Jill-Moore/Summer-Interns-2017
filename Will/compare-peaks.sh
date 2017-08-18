@@ -5,7 +5,7 @@
 if [ $# -eq 0 ]; then
     echo "Tool:         compare-peaks"
     echo "Summary:      Compare the percent overlap between two histone mark datasets in the same cell type for the same mark. Generate scatterplots that compare signals over each peak."
-    echo "Usage:        ./compare-peaks.sh peaks1.bed peaks2.bed [signal1.bigwig] [signal2.bigwig]"
+    echo "Usage:        ./compare-peaks.sh peaks1.bed peaks2.bed [signal1.bigwig signal2.bigwig]"
     echo "Dependencies: bigWigAverageOverBed" 
     exit 1
 fi
@@ -36,6 +36,13 @@ if [ $# -eq 4 ]; then
     fi
 fi
 
+# Test invalid number of arguments
+if [ $# != 2 ] && [ $# != 4 ]
+then
+    echo "Invalid number of arguments."
+    exit 1
+fi
+
 ### Compute number of peaks and intersections ###
 
 numpeaks=$( cat $peaks1 | wc -l )
@@ -55,6 +62,17 @@ echo "  percent overlap: "$percent" %"
 ### Generate scatterplots comparing signals between each lab over each peak ###
 
 if [ $# -eq 4 ]; then
-    echo "Generating scatterplots ... "
+    echo "Generating peak 1 ("$peaks1") scatterplot ... "
+    cat $peaks1 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks1.bed
+
+    bigWigAverageOverBed $signal1 tmp.peaks1.bed peaks1.signal1.results.bed
+    bigWigAverageOverBed $signal2 tmp.peaks1.bed peaks1.signal2.results.bed
+
+    echo "Generating peak 2 ("$peaks2") scatterplot ... "
+    cat $peaks2 | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,"Peak-"NR}' > tmp.peaks2.bed
+
+    bigWigAverageOverBed $signal1 tmp.peaks2.bed peaks2.signal1.results.bed
+    bigWigAverageOverBed $signal2 tmp.peaks2.bed peaks2.signal2.results.bed
+
     echo "Done."
 fi
