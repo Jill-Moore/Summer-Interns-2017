@@ -45,5 +45,6 @@ p <- ggplot(data, aes(x = xaxis, y = yaxis)) +
   xlab(paste(x, "Signal")) + 
   ylab(paste(y, "Signal")) + 
   theme(plot.title = element_text(face = "bold", color = "#323232", hjust = 0.5), 
-        axis.title = element_text(face = "bold", color = "#323232"))
+        axis.title = element_text(face = "bold", color = "#323232"),
+        panel.background = element_rect(fill = "white", color = "grey50"))
 ggsave(paste(x,"-",y,".png", sep = ""))
