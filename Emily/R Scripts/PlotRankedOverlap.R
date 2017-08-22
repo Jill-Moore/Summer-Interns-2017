@@ -1,0 +1,40 @@
+setwd("~/Files for Graphs/")
+rotated<-read.csv("rankedOverlapRotated.csv")
+library(ggplot2)
+#means
+ggplot(rotated, aes(x=Bin, y=Means)) + 
+  geom_point() + 
+  labs(title="Mean Percentage of Overlap using ATAC-seq Data Sets", y="Percent Overlap with cREs", x="Sorted Bin") +
+  theme(plot.title=element_text(face="bold", hjust=.5))
+#pdf("MeanOverlap.pdf")
+#dev.off()
+
+ggplot(rotated, aes(x=Bin, y=ENCFF572FWW)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF572FWW")
+ggplot(rotated, aes(x=Bin, y=ENCFF759EZO)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF759EZO")
+ggplot(rotated, aes(x=Bin, y=ENCFF281XXQ)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF281XXQ")
+ggplot(rotated, aes(x=Bin, y=ENCFF393IRV)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF393IRV")
+ggplot(rotated, aes(x=Bin, y=ENCFF440MJI)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF440MJI")
+ggplot(rotated, aes(x=Bin, y=ENCFF841WRI)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF841WRI")
+ggplot(rotated, aes(x=Bin, y=ENCFF084TDE)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF084TDE")
+ggplot(rotated, aes(x=Bin, y=ENCFF082PHJ)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF082PHJ")
+ggplot(rotated, aes(x=Bin, y=ENCFF251ECG)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF251ECG")
+ggplot(rotated, aes(x=Bin, y=ENCFF095GZW)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF095GZW")
+ggplot(rotated, aes(x=Bin, y=ENCFF475EDP)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF475EDP")
+ggplot(rotated, aes(x=Bin, y=ENCFF440BKO)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF440BKO")
+ggplot(rotated, aes(x=Bin, y=ENCFF933HOA)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF933HOA")
+ggplot(rotated, aes(x=Bin, y=ENCFF955WEV)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF955WEV")
+ggplot(rotated, aes(x=Bin, y=ENCFF438JRV)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF438JRV")
+ggplot(rotated, aes(x=Bin, y=ENCFF214QXN)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF214QXN")
+ggplot(rotated, aes(x=Bin, y=ENCFF806ILA)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF806ILA")
+ggplot(rotated, aes(x=Bin, y=ENCFF178ODE)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF178ODE")
+ggplot(rotated, aes(x=Bin, y=ENCFF351DTH)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF351DTH")
+ggplot(rotated, aes(x=Bin, y=ENCFF137TIB)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF137TIB")
+ggplot(rotated, aes(x=Bin, y=ENCFF149GFI)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF149GFI")
+ggplot(rotated, aes(x=Bin, y=ENCFF137OHB)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF137OHB")
+ggplot(rotated, aes(x=Bin, y=ENCFF785JAD)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF785JAD")
+ggplot(rotated, aes(x=Bin, y=ENCFF561WBB)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF561WBB")
+ggplot(rotated, aes(x=Bin, y=ENCFF894XID)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF894XID")
+ggplot(rotated, aes(x=Bin, y=ENCFF869QDK)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF869QDK")
+ggplot(rotated, aes(x=Bin, y=ENCFF609WOX)) + geom_point() + labs(y="Percent Overlap with cREs", title="ENCFF609WOX")
+#In every data set except ENCFF178ODE, the point with x=10000 is greater than the point with x=5000
+
